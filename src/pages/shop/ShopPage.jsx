@@ -1,5 +1,5 @@
 import React from "react";
-import CollectionComp from "../../components/common/CollectionComp/CollectionComp";
+import CollectionComp from "../../components/CollectionComp/CollectionComp";
 import ShopData from "./Shop.data";
 
 const ShopPage = () => {

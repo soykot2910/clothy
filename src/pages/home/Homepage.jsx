@@ -1,5 +1,5 @@
 import React from "react";
-import DirectoryComp from "../../components/common/DirectoryComp/DirectoryComp";
+import DirectoryComp from "../../components/DirectoryComp/DirectoryComp";
 import "./homepage.style.scss";
 
 const Home = () => {
