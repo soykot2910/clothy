@@ -13,6 +13,17 @@
   font-weight: bolder;
   border: none;
   cursor: pointer;
+  margin-right: 10px;
+
+  &.google-sign-in {
+    background-color: #4285f4;
+    color: white;
+    &:hover {
+      background-color: #357ae8;
+      color: white;
+      border: none;
+    }
+  }
 
   &:hover {
     background-color: white;

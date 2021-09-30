@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import CustomeButtonComp from "../CustomeButtonComp/CustomeButtonComp";
 import FormInputComp from "../FormInputComp/FormInputComp";
+
+import { signInWithGoogle } from "../../firebase/firebase.utils";
+
 import "./signIn.style.scss";
+
 const SignInComp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +37,12 @@ const SignInComp = () => {
           handleChange={(e) => setPassword(e.target.value)}
           required
         />
-        <CustomeButtonComp type="submit"> Sign in</CustomeButtonComp>
+        <div className="buttons">
+          <CustomeButtonComp type="submit">Sign in</CustomeButtonComp>
+          <CustomeButtonComp onClick={signInWithGoogle} isGoogleSignIn>
+            Sign in with google
+          </CustomeButtonComp>
+        </div>
       </form>
     </div>
   );
