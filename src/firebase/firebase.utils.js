@@ -3,13 +3,37 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 const config = {
-  apiKey: "AIzaSyDy64Lzh4YElyfoVIo5WUUiGSqKtn_O4UQ",
-  authDomain: "clothy-e6252.firebaseapp.com",
-  projectId: "clothy-e6252",
-  storageBucket: "clothy-e6252.appspot.com",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: "982267000333",
-  appId: "1:982267000333:web:3c9d64230c2d6f0d8fc744",
+  appId: process.env.REACT_APP_APP_ID,
   measurementId: "G-J0NCGXPJKB",
+};
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+  const snapShot = await userRef.get();
+
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log("error creating user", error.message);
+    }
+  }
+  return userRef;
 };
 
 firebase.initializeApp(config);
